@@ -3,8 +3,8 @@ class Validator {
         this.validatorFunctions = {
             dataType: this.dataTypeCheck,
             isRequired: this.isRequiredCheck,
-            min: this.minCheck,
-            max: this.maxCheck
+            minValue: this.minCheck,
+            maxValue: this.maxCheck
             // min: this.checkMinMax('min')
         }
     }
@@ -23,15 +23,12 @@ class Validator {
     }
 
     valueDeterminator = (objProp, dataType, objPropKey) => {
-        // const map = {
-        //     'string': objProp && objProp.length,
-        //     'array': objProp && objProp.length,
-        //     'number': objProp
-        // }
-        // return map[dataType]
-        if(dataType ==='string') return objProp.length;
-        if(dataType === 'array') return objProp.length;
-        if(dataType === 'number') return objProp;
+        const map = {
+            'string': objProp && objProp.length,
+            'array': objProp && objProp.length,
+            'number': objProp
+        }
+        return map[dataType]
         throw new Error(`Current ${objPropKey} cannot have minimum or maximum value`);
     }
 
@@ -64,19 +61,14 @@ class Validator {
         const {rules, args} = obj;
         for(let objPropKey in rules) {
             for(let ruleValueKey of Object.keys(rules[objPropKey])){
-//            Object.keys(rules[objPropKey]).forEach((ruleValueKey)=>{
-                
-                if(rules[objPropKey][ruleValueKey]===false || rules[objPropKey][ruleValueKey]=== true) continue;
-                console.log(rules[objPropKey][ruleValueKey])
+                if(rules[objPropKey][ruleValueKey] === false || rules[objPropKey][ruleValueKey] === true) continue;
                 let validateParams = { 
                     objProp: args[objPropKey],
                     objPropKey,
                     ruleValue: rules[objPropKey][ruleValueKey],
                     dataType: rules[objPropKey]['dataType']  
                     }
- //               console.log(ruleValueKey);
                 this.validatorFunctions[ruleValueKey](validateParams);
-//            })
             }
         }
         return true;
