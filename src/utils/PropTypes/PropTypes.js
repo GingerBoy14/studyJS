@@ -3,9 +3,9 @@ import { DATA_TYPES_VALUES } from '../../constants/dataTypes'
 class PropType {
     constructor(dataType) {
         this.dataType = dataType;
-        this.isRequired = false;
-        this.min = false;
-        this.max = false;       
+        this.isRequired = false
+        this.minValue = false;
+        this.maxValue = false;       
     }
 
     required() {
@@ -13,13 +13,13 @@ class PropType {
         return this;
     }
 
-    min(val){
-        this.min = val
+    min(val) {
+        this.minValue = val
         return this
     }
 
-    max(val){
-        this.max = val
+    max(val) {
+        this.maxValue = val
         return this
     }
 }

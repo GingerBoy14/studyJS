@@ -1,4 +1,3 @@
-
 const DATA_TYPES = {
     STRING: 'string',
     BOOLEAN: 'boolean',

@@ -3,12 +3,12 @@ class Validator {
         this.validatorFunctions = {
             dataType: this.dataTypeCheck,
             isRequired: this.isRequiredCheck,
-            min: this.minCheck,
-            max: this.maxCheck
-            // min: this.checkMinMax('min')
+            // minValue: this.minCheck,
+            // maxValue: this.maxCheck
+            minValue: this.checkMinMax,
+            maxValue: this.checkMinMax
         }
     }
-
 
     isRequiredCheck({ objProp, objPropKey }) {
         if(objProp) return true;
@@ -22,41 +22,48 @@ class Validator {
         throw new Error(`${objPropKey} type isn't type that was declared in rules`);
     }
 
-    valueDeterminator = (objProp, dataType, objPropKey) => {
-        // const map = {
-        //     'string': objProp && objProp.length,
-        //     'array': objProp && objProp.length,
-        //     'number': objProp
-        // }
-        // return map[dataType]
-        if(dataType ==='string') return objProp.length;
-        if(dataType === 'array') return objProp.length;
-        if(dataType === 'number') return objProp;
-        throw new Error(`Current ${objPropKey} cannot have minimum or maximum value`);
-    }
+    // valueDeterminator = (objProp, dataType, objPropKey) => {
+    //     dataType = dataType==='array'||dataType==='string' ? dataType='else' : dataType
+    //     const map = {
+    //         'else': objProp && objProp.length,
+    //         'number': objProp
+    //     }
+    //     if(map[dataType]) return map[dataType];
+    //     else throw new Error(`${objPropKey} cannot have minimum or maximum value`);
+    //     // if(dataType ==='string') return objProp.length;
+    //     // if(dataType === 'array') return objProp.length;
+    //     // if(dataType === 'number') return objProp;
+    //     // throw new Error(`Current ${objPropKey} cannot have minimum or maximum value`);
+    // }
 
-    minCheck = (validateParams) => {
-        const {objProp, dataType, ruleValue, objPropKey} = validateParams;
-        let tmp = this.valueDeterminator(objProp, dataType)
-        if(tmp >= ruleValue) return true;
-        throw new Error(`${objPropKey} is lesser than minimum value`);
-    }
+    // minCheck = (validateParams) => {
+    //     const {objProp, dataType, ruleValue, objPropKey} = validateParams;
+    //     let tmp = this.valueDeterminator(objProp, dataType)
+    //     if(tmp >= ruleValue) return true;
+    //     throw new Error(`${objPropKey} is lesser than minimum value`);
+    // }
 
-    maxCheck=(validateParams)=>{
-        const {objProp, dataType, objPropKey, ruleValue} = validateParams;
-        if(this.valueDeterminator(objProp, dataType, objPropKey)<=ruleValue) return true;
-        throw new Error(`${objPropKey} is bigger than maximum value`);
-    }
+    // maxCheck=(validateParams)=>{
+    //     const {objProp, dataType, objPropKey, ruleValue} = validateParams;
+    //     if(this.valueDeterminator(objProp, dataType, objPropKey)<=ruleValue) return true;
+    //     throw new Error(`${objPropKey} is bigger than maximum value`);
+    // }
 
-    checkMinMax = (val) => {
-        return () => {
-            // const {objProp, dataType, ruleValue, objPropKey} = validateParams;
-            // let tmp = this.valueDeterminator(objProp, dataType)
-            // if(tmp >= ruleValue) return true;
-            // throw new Error(`${objPropKey} is lesser than minimum value`);
-
-            // Value determinator
+    checkMinMax = ({objProp, dataType, ruleValue, objPropKey, ruleValueKey}) => {
+        let valueDeterminator = (objProp, dataType, objPropKey) => {
+            //const condition = ['array', 'string'].includes(dataType) ? objProp.length : objProp
+            dataType = dataType==='array'||dataType==='string' ? dataType='else' : dataType
+            const map = {
+                'else': objProp && objProp.length,
+                'number': objProp
+            }
+            if(map[dataType]) return map[dataType];
+            throw new Error(`${objPropKey} cannot have minimum or maximum value`);
         }
+        console.log(ruleValueKey)
+        let op = ruleValueKey === 'minValue' ? (valueDeterminator(objProp, dataType) >= ruleValue) : (valueDeterminator(objProp, dataType) <= ruleValue)
+        if(op) return true;
+        else throw new Error(`${objPropKey} is smaller/bigger than minimum/maximum value`);
     }
 
 
@@ -64,19 +71,15 @@ class Validator {
         const {rules, args} = obj;
         for(let objPropKey in rules) {
             for(let ruleValueKey of Object.keys(rules[objPropKey])){
-//            Object.keys(rules[objPropKey]).forEach((ruleValueKey)=>{
-                
-                if(rules[objPropKey][ruleValueKey]===false || rules[objPropKey][ruleValueKey]=== true) continue;
-                console.log(rules[objPropKey][ruleValueKey])
+                if(rules[objPropKey][ruleValueKey] === false) continue;
                 let validateParams = { 
                     objProp: args[objPropKey],
                     objPropKey,
                     ruleValue: rules[objPropKey][ruleValueKey],
-                    dataType: rules[objPropKey]['dataType']  
+                    dataType: rules[objPropKey]['dataType'],
+                    ruleValueKey  
                     }
- //               console.log(ruleValueKey);
                 this.validatorFunctions[ruleValueKey](validateParams);
-//            })
             }
         }
         return true;
