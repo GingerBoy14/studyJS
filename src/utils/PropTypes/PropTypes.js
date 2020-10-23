@@ -14,15 +14,13 @@ class PropType {
     }
 
     min(val){
-        const bug = {...this, min: val};
-        bug.__proto__ = PropType.prototype
-        return bug
+        this.min = val
+        return this
     }
 
     max(val){
-        const bug = {...this, max: val};
-        bug.__proto__ = PropType.prototype
-        return bug
+        this.max = val
+        return this
     }
 }
 

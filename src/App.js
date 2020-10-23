@@ -10,8 +10,11 @@ const post1 = new Post();
 const post2 = new Post();
 Storage.post(post1)
 Storage.post(post2)
-const rules = {name: PropTypes.array().required().min(1).max(2), age: PropTypes.number().min(2).max(20)}
-const args = {name: [12,12,12], age: 5}
+const rules = {
+  name: PropTypes.string().required().min(1), 
+  age: PropTypes.number()
+}
+const args = {name: "sd", age: 5}
 
 Validator.validate({rules, args});
 

@@ -62,16 +62,21 @@ class Validator {
     validate(obj) {
         const {rules, args} = obj;
         for(let objPropKey in rules) {
-            Object.keys(rules[objPropKey]).forEach((ruleValueKey)=>{
-                console.log(ruleValueKey);
+            for(let ruleValueKey of Object.keys(rules[objPropKey])){
+//            Object.keys(rules[objPropKey]).forEach((ruleValueKey)=>{
+                
+                if(rules[objPropKey][ruleValueKey]===false || rules[objPropKey][ruleValueKey]=== true) continue;
+                console.log(rules[objPropKey][ruleValueKey])
                 let validateParams = { 
                     objProp: args[objPropKey],
                     objPropKey,
                     ruleValue: rules[objPropKey][ruleValueKey],
                     dataType: rules[objPropKey]['dataType']  
                     }
+ //               console.log(ruleValueKey);
                 this.validatorFunctions[ruleValueKey](validateParams);
-            })
+//            })
+            }
         }
         return true;
     }
