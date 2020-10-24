@@ -4,7 +4,7 @@ class Validator {
       dataType: this.dataTypeCheck,
       isRequired: this.isRequiredCheck,
       minValue: this.minCheck,
-      maxValue: this.maxCheck,
+      maxValue: this.maxCheck
       // min: this.checkMinMax('min')
     }
   }
@@ -16,7 +16,7 @@ class Validator {
 
   dataTypeCheck(validateParams) {
     const { objProp, ruleValue, objPropKey } = validateParams
-    if (Array.isArray(objProp) && ruleValue === "array") return true
+    if (Array.isArray(objProp) && ruleValue === 'array') return true
     if (typeof objProp === ruleValue) return true
     throw new Error(`${objPropKey} type isn't type that was declared in rules`)
   }
@@ -25,7 +25,7 @@ class Validator {
     const map = {
       string: objProp && objProp.length,
       array: objProp && objProp.length,
-      number: objProp,
+      number: objProp
     }
     return map[dataType]
     throw new Error(
@@ -70,7 +70,7 @@ class Validator {
           objProp: args[objPropKey],
           objPropKey,
           ruleValue: rules[objPropKey][ruleValueKey],
-          dataType: rules[objPropKey]["dataType"],
+          dataType: rules[objPropKey]['dataType']
         }
         this.validatorFunctions[ruleValueKey](validateParams)
       }
