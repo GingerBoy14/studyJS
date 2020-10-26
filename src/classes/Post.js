@@ -1,8 +1,8 @@
 class Post {
   constructor() {
-    this.type = 'Post'
-    this.author = ''
-    this.content = ''
+    this.type = "Post"
+    this.author = ""
+    this.content = ""
   }
 }
 
