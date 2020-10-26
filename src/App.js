@@ -6,10 +6,11 @@ import { Post, Storage } from './classes'
 import PropTypes from './utils/PropTypes'
 import Validator from './utils/validator'
 
-const post1 = new Post();
-const post2 = new Post();
+const post1 = new Post()
+const post2 = new Post()
 Storage.post(post1)
 Storage.post(post2)
+
 const rules = {
   name: PropTypes.string().required().max(4), 
   age: PropTypes.number().min(2)
@@ -39,4 +40,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
