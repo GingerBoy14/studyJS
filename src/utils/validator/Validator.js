@@ -1,53 +1,15 @@
+import isRequiredCheck from "./isRequired"
+import dataTypeCheck from "./dataTypeCheck"
+import checkMinMax from "./checkMinMax"
+
 class Validator {
   constructor() {
     this.validatorFunctions = {
-      dataType: this.dataTypeCheck,
-      isRequired: this.isRequiredCheck,
-      minValue: this.checkMinMax,
-      maxValue: this.checkMinMax,
+      dataType: dataTypeCheck,
+      isRequired: isRequiredCheck,
+      minValue: checkMinMax,
+      maxValue: checkMinMax,
     }
-  }
-
-  isRequiredCheck({ objProp, objPropKey }) {
-    if (objProp) return true
-    throw new Error(`${objPropKey} cannot be empty!`)
-  }
-
-  dataTypeCheck(validateParams) {
-    const { objProp, ruleValue, objPropKey } = validateParams
-    if (Array.isArray(objProp) && ruleValue === "array") return true
-    if (typeof objProp === ruleValue) return true
-    throw new Error(`${objPropKey} type isn't type that was declared in rules`)
-  }
-
-  checkMinMax = ({
-    objProp,
-    dataType,
-    ruleValue,
-    objPropKey,
-    ruleValueKey,
-  }) => {
-    let valueDeterminator = (objProp, dataType, objPropKey) => {
-      dataType =
-        dataType === "array" || dataType === "string"
-          ? (dataType = "else")
-          : dataType
-      const map = {
-        else: objProp && objProp.length,
-        number: objProp,
-      }
-      if (map[dataType]) return map[dataType]
-      throw new Error(`${objPropKey} cannot have minimum or maximum value`)
-    }
-    let op =
-      ruleValueKey === "minValue"
-        ? valueDeterminator(objProp, dataType) >= ruleValue
-        : valueDeterminator(objProp, dataType) <= ruleValue
-    if (op) return true
-    else
-      throw new Error(
-        `${objPropKey} is smaller/bigger than minimum/maximum value`
-      )
   }
 
   validate(obj) {
