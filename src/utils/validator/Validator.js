@@ -7,8 +7,8 @@ class Validator {
     this.validatorFunctions = {
       dataType: dataTypeCheck,
       isRequired: isRequiredCheck,
-      minValue: checkMinMax,
-      maxValue: checkMinMax,
+      minValue: checkMinMax("min"),
+      maxValue: checkMinMax("max"),
     }
   }
 
@@ -22,7 +22,6 @@ class Validator {
           objPropKey,
           ruleValue: rules[objPropKey][ruleValueKey],
           dataType: rules[objPropKey]["dataType"],
-          ruleValueKey,
         }
         this.validatorFunctions[ruleValueKey](validateParams)
       }

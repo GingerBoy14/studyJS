@@ -1,9 +1,8 @@
-const checkMinMax = ({
+const checkMinMax = (option) => ({
   objProp,
   dataType,
   ruleValue,
   objPropKey,
-  ruleValueKey,
 }) => {
   let valueDeterminator = (objProp, dataType, objPropKey) => {
     dataType =
@@ -15,17 +14,22 @@ const checkMinMax = ({
       number: objProp,
     }
     if (map[dataType]) return map[dataType]
-    throw new Error(`${objPropKey} cannot have minimum or maximum value`)
+    throw new Error(`${objPropKey} cannot have value length restriction`)
   }
-  let op =
-    ruleValueKey === "minValue"
-      ? valueDeterminator(objProp, dataType) >= ruleValue
-      : valueDeterminator(objProp, dataType) <= ruleValue
-  if (op) return true
-  else
-    throw new Error(
-      `${objPropKey} is smaller/bigger than minimum/maximum value`
-    )
+  let errorMessage = ""
+  const op = () => {
+    return option === "min"
+      ? () => {
+          errorMessage = `${objPropKey} is smaller than minimum value`
+          return valueDeterminator(objProp, dataType) >= ruleValue
+        }
+      : () => {
+          errorMessage = `${objPropKey} is bigger than maximum value`
+          return valueDeterminator(objProp, dataType) <= ruleValue
+        }
+  }
+  if (op()()) return true
+  else throw new Error(errorMessage)
 }
 
 export default checkMinMax
