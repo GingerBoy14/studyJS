@@ -3,22 +3,22 @@ const checkMinMax = ({
   dataType,
   ruleValue,
   objPropKey,
-  ruleValueKey,
+  ruleValueKey
 }) => {
   let valueDeterminator = (objProp, dataType, objPropKey) => {
     dataType =
-      dataType === "array" || dataType === "string"
-        ? (dataType = "else")
+      dataType === 'array' || dataType === 'string'
+        ? (dataType = 'else')
         : dataType
     const map = {
       else: objProp && objProp.length,
-      number: objProp,
+      number: objProp
     }
     if (map[dataType]) return map[dataType]
     throw new Error(`${objPropKey} cannot have minimum or maximum value`)
   }
   let op =
-    ruleValueKey === "minValue"
+    ruleValueKey === 'minValue'
       ? valueDeterminator(objProp, dataType) >= ruleValue
       : valueDeterminator(objProp, dataType) <= ruleValue
   if (op) return true
