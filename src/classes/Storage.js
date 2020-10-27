@@ -12,9 +12,9 @@ class Storage {
         throw new Error('Data should be an object')
       if (!data.type) throw new Error('Data should have type')
       if (typeof data.type !== 'string')
-      throw new Error('Data should be a string')
+        throw new Error('Data should be a string')
 
-      const uid = generateUID();
+      const uid = generateUID()
       const collectionName = getCollectionName(data.type)
       this.data[collectionName] = {
         ...this.data[collectionName],

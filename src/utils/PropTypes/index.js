@@ -1,3 +1,3 @@
-import PropTypes from "./PropTypes.js"
+import PropTypes from './PropTypes.js'
 
 export default PropTypes
