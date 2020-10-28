@@ -7,14 +7,23 @@ class Storage  {
 
   post(data) {
     try {
+<<<<<<< HEAD
       if (!data) throw new Error("No data in post method!")
       if (typeof data !== "object" || Array.isArray(data))
         throw new  Error("Data should be an object")
       if (!data.type) throw new Error("Data should have type")
       if (typeof data.type !== "string")
         throw new Error("Data should be a string")
+=======
+      if (!data) throw new Error('No data in post method!')
+      if (typeof data !== 'object' || Array.isArray(data))
+        throw new Error('Data should be an object')
+      if (!data.type) throw new Error('Data should have type')
+      if (typeof data.type !== 'string')
+        throw new Error('Data should be a string')
+>>>>>>> c0760185793bdb106a623ac2807cf15f3f2b546a
 
-      const uid = generateUID();
+      const uid = generateUID()
       const collectionName = getCollectionName(data.type)
       this.data[collectionName] =  {
         ...this.data[collectionName],
