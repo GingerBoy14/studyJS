@@ -32,7 +32,6 @@ class Validator {
     const { rules, args } = obj
     for (let objPropKey in rules) {
       for (let ruleValueKey of Object.keys(rules[objPropKey])) {
-        console.log(ruleValueKey)
         if (rules[objPropKey][ruleValueKey] === false) continue
         let validateParams = {
           objProp: args[objPropKey],
