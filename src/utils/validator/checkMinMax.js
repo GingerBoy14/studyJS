@@ -1,3 +1,16 @@
+/**
+ * @module checkMinMax
+ */
+
+/**
+ * @param objProp{object} value in object
+ * @param dataType {object} type parameters
+ * @param ruleValue{object} object with rules
+ * @param objPropKey{object} key in object
+ * @param ruleValueKey{object} key in object with rules
+ * @returns {boolean} return true  if op satisfies condition
+ */
+
 const checkMinMax = (option) => ({
   objProp,
   dataType,
@@ -13,8 +26,8 @@ const checkMinMax = (option) => ({
       else: objProp && objProp.length,
       number: objProp
     }
-    if (map[dataType]) return map[dataType]
-    throw new Error(`${objPropKey} cannot have value length restriction`)
+    if (map[dataType]) return map[dataType] //return available data type
+    throw new Error(`${objPropKey} cannot have minimum or maximum value`)
   }
   let errorMessage = ""
   const op = () => {

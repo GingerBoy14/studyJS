@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: utils/validator/Validator.js</title>
+    <title>JSDoc: Source: utils/validator/isRequired.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: utils/validator/Validator.js</h1>
+    <h1 class="page-title">Source: utils/validator/isRequired.js</h1>
 
     
 
@@ -26,53 +26,23 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import isRequiredCheck from './isRequired'
-import dataTypeCheck from './dataTypeCheck'
-import checkMinMax from './checkMinMax'
+            <pre class="prettyprint source linenums"><code>/**
+ * @module isRequiredCheck
+ */
 
 /**
- * @class Validator
- */
-class Validator {
-  constructor() {
-    /**
-     *@constructor property which contains function calls
-     */
-    this.validatorFunctions = {
-      dataType: dataTypeCheck,
-      isRequired: isRequiredCheck,
-      minValue: checkMinMax("min"),
-      maxValue: checkMinMax("max"),
+ * @param objProp {object} value object property
+ * @param objPropKey{object} key object property
+ * @returns {boolean} return true if object property is available in object
+ *
+ * */
 
-    }
-  }
-
-  /**
-   *
-   * @param obj
-   * @returns {boolean}
-   */
-  validate(obj) {
-    const { rules, args } = obj
-    for (let objPropKey in rules) {
-      //moving keys in rules
-      for (let ruleValueKey of Object.keys(rules[objPropKey])) {
-        //moving for keys in rules keys
-        if (rules[objPropKey][ruleValueKey] === false) continue //if property unavailable in object
-        let validateParams = {
-          objProp: args[objPropKey],
-          objPropKey,
-          ruleValue: rules[objPropKey][ruleValueKey],
-          dataType: rules[objPropKey]["dataType"],
-        }
-        this.validatorFunctions[ruleValueKey](validateParams) //called constructor in Validator class and called all functions
-      }
-    }
-    return true
-  }
+const isRequiredCheck = ({ objProp, objPropKey }) => {
+  if (objProp) return true
+  throw new Error(`${objPropKey} cannot be empty!`)
 }
 
-export default new Validator()
+export default isRequiredCheck
 </code></pre>
         </article>
     </section>

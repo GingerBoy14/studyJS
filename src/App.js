@@ -8,6 +8,7 @@ const post1 = new Post()
 const post2 = new Post()
 Storage.post(post1)
 Storage.post(post2)
+
 /**
  *
  * @type {{name: *, age: *}}

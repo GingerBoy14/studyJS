@@ -5,22 +5,16 @@ import checkMinMax from './checkMinMax'
 /**
  * @class Validator
  */
-
 class Validator {
   constructor() {
     /**
-     *
-     * @type {{isRequired: (function({objProp?: *, objPropKey: *}): boolean),
-     * minValue: (function(*): (boolean|undefined)),
-     * maxValue: (function(*): (boolean|undefined)),
-     * dataType: (function(*): boolean)}}
+     *@constructor property which contains function calls
      */
     this.validatorFunctions = {
       dataType: dataTypeCheck,
       isRequired: isRequiredCheck,
-      minValue: checkMinMax("min"),
-      maxValue: checkMinMax("max"),
-
+      minValue: checkMinMax('min'),
+      maxValue: checkMinMax('max')
     }
   }
 
@@ -32,16 +26,17 @@ class Validator {
   validate(obj) {
     const { rules, args } = obj
     for (let objPropKey in rules) {
+      //moving keys in rules
       for (let ruleValueKey of Object.keys(rules[objPropKey])) {
-        console.log(ruleValueKey)
-        if (rules[objPropKey][ruleValueKey] === false) continue
+        //moving for keys in rules keys
+        if (rules[objPropKey][ruleValueKey] === false) continue //if property unavailable in object
         let validateParams = {
           objProp: args[objPropKey],
           objPropKey,
           ruleValue: rules[objPropKey][ruleValueKey],
-          dataType: rules[objPropKey]["dataType"],
+          dataType: rules[objPropKey]['dataType']
         }
-        this.validatorFunctions[ruleValueKey](validateParams)
+        this.validatorFunctions[ruleValueKey](validateParams) //called constructor in Validator class and called all functions
       }
     }
     return true

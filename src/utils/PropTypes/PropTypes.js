@@ -1,4 +1,4 @@
-import { DATA_TYPES_VALUES } from "../../constants/dataTypes"
+import { DATA_TYPES_VALUES } from '../../constants/dataTypes'
 
 class PropType {
   constructor(dataType) {
