@@ -11,7 +11,7 @@
  * @returns {boolean} return true  if op satisfies condition
  */
 
-const checkMinMax = (option) => ({
+const checkMinMaxTest = (option) => ({
   objProp,
   dataType,
   ruleValue,
@@ -45,4 +45,4 @@ const checkMinMax = (option) => ({
   else throw new Error(errorMessage)
 }
 
-export default checkMinMax
+export default checkMinMaxTest

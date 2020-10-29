@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "chalk": "^4.1.0",
     "file-system": "^2.2.2",
+    "fs-extra": "^9.0.1",
     "pluralize": "^8.0.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
@@ -20,7 +21,8 @@
     "test": "react-scripts test",
     "testLib": "node lib/index.js",
     "eject": "react-scripts eject",
-    "doc": "jsdoc -c jsdoc.json"
+    "doc": "jsdoc -c jsdoc.json",
+    "path": "node lib/src/helpers/parser/pathFinder.js"
   },
   "eslintConfig": {
     "extends": "react-app"

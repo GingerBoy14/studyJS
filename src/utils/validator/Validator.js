@@ -1,6 +1,6 @@
 import isRequiredCheck from './isRequired'
 import dataTypeCheck from './dataTypeCheck'
-import checkMinMax from './checkMinMax'
+import checkMinMaxTest from './checkMinMax.test'
 
 /**
  * @class Validator
@@ -13,8 +13,8 @@ class Validator {
     this.validatorFunctions = {
       dataType: dataTypeCheck,
       isRequired: isRequiredCheck,
-      minValue: checkMinMax('min'),
-      maxValue: checkMinMax('max')
+      minValue: checkMinMaxTest('min'),
+      maxValue: checkMinMaxTest('max')
     }
   }
 

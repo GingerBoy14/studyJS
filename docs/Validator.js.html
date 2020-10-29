@@ -33,7 +33,7 @@
       isRequired: this.isRequiredCheck,
       minValue: this.minCheck,
       maxValue: this.maxCheck
-      // min: this.checkMinMax('min')
+      // min: this.checkMinMaxTest('min')
     }
   }
 
@@ -93,7 +93,7 @@
     throw new Error(`${objPropKey} is bigger than maximum value`)
   }
 
-  checkMinMax = (val) => {
+  checkMinMaxTest = (val) => {
     return () => {
       // const {objProp, dataType, ruleValue, objPropKey} = validateParams;
       // let tmp = this.valueDeterminator(objProp, dataType)
