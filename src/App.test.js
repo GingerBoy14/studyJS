@@ -1,3 +1,5 @@
+const { describe, it, expect } = require('../lib/src/unitTest')
+
 describe('first test', () => {
   it('should do smth', function () {
     expect(5).toBe(5)
