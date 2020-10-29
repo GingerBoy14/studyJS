@@ -37,7 +37,11 @@
       "last 1 safari version"
     ]
   },
+  "plugins": [
+    ["dynamic-import-node", { "noInterop": true }]
+  ],
   "devDependencies": {
+    "babel-plugin-dynamic-import-node": "^2.3.3",
     "eslint": "^7.12.0",
     "eslint-config-prettier": "^6.14.0",
     "eslint-plugin-babel": "^5.3.1",
