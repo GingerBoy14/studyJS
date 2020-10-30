@@ -1,5 +1,5 @@
 const { describe, it, expect } = require('../lib/src/unitTest')
-d
+
 describe('Matsdfsdfdh', () => {
   it('sum return 10', () => {
     expect(10).toBe(10)
@@ -11,7 +11,7 @@ describe('Matsdfsdfdh', () => {
 })
 describe('Tesdfsdfxt', () => {
   it('add Hello + World', () => {
-    expect((() => 'Hello')()).toBe('Hellod')
+    expect((() => 'Hello')()).toBe('Hello')
   })
   it('sum return hello', () => {
     const sum = () => 'hello'
