@@ -1,5 +1,3 @@
-const { describe, it, expect } = require('../lib/src/unitTest')
-
 describe('Matsdfsdfdh', () => {
   it('sum return 10', () => {
     expect(10).toBe(10)
