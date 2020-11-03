@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: isRequired.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,35 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: isRequired.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module isRequiredCheck
+ */
 
+/**
+ * @param objProp {object} value object property
+ * @param objPropKey{object} key object property
+ * @returns {boolean} return true if object property is available in object
+ *
+ * */
 
-    <h3> </h3>
+const isRequiredCheck = ({ objProp, objPropKey }) => {
+  if (objProp) return true
+  throw new Error(`${objPropKey} cannot be empty!`)
+}
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+export default isRequiredCheck
+</code></pre>
+        </article>
+    </section>
 
 
 

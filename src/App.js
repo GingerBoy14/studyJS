@@ -1,25 +1,43 @@
+// const args = { name: 'sd6', age: 5 }
+// Validator.validate({ rules, args })
 import React from 'react'
-import CONSTANTS from './constants'
-import { Post, Storage } from './classes'
-import PropTypes from './utils/PropTypes'
-import Validator from './utils/validator'
+import log from './log.json'
 
-const post1 = new Post()
-const post2 = new Post()
-Storage.post(post1)
-Storage.post(post2)
-
-/**
- *
- * @type {{name: *, age: *}}
- */
-const rules = {
-  name: PropTypes.string().required().min(1).max(3),
-  age: PropTypes.number()
+const App = () => {
+  return <div></div>
 }
-const args = { name: 'sd6', age: 5 }
 
-Validator.validate({ rules, args })
-const App = () => <h1>asdfasdf</h1>
+const Test = () => (
+  <div>
+    <h1>Result tests</h1>
+    {log &&
+      log.results.map(({ it, nameDescribe }) => (
+        <div>
+          <h2 style={{ color: 'blue' }}> Name Describe = {nameDescribe}</h2>
+          {it.map(({ nameIt, expects }) => (
+            <div>
+              <h2>Name It = {nameIt}</h2>
+              {expects.map(({ expect, status }) => {
+                const pass = () => (
+                  <span style={{ fontSize: 17, fontWeight: '600' }}>✔️</span>
+                )
+                const fail = () => (
+                  <span style={{ fontSize: 17, fontWeight: '600' }}>✖️</span>
+                )
+                return (
+                  <div>
+                    <h3 style={{ color: 'gray', display: 'inline' }}>
+                      {expect}
+                    </h3>
+                    {status ? pass() : fail()}
+                  </div>
+                )
+              })}
+            </div>
+          ))}
+        </div>
+      ))}
+  </div>
+)
 
-export default App
+export { App, Test }
