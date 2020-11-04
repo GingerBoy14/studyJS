@@ -7,6 +7,9 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "chalk": "^4.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "figures": "^3.2.0",
     "file-system": "^2.2.2",
     "pluralize": "^8.0.0",
     "react": "^17.0.0",
@@ -18,7 +21,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "testLib": "node lib/index.js",
+    "testLib": "node src/lib/src/helpers/display/cli/showTestResults.js",
     "eject": "react-scripts eject",
     "doc": "jsdoc -c jsdoc.json"
   },
