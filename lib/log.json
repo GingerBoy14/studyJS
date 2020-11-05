@@ -1,1 +1,35 @@
-{"log":[{"id":100000,"name":"John Doe","age":22},{"id":10,"name":"John Duck","age":22}],"total":100,"passed":100,"failed":100}
+{
+  "log": [
+    {
+      "testDescribe": "Substract numbers",
+      "testCasesArray": [
+        {
+          "name": "should substract 3 from 8",
+          "status": true
+        },
+        {
+          "name": "should substract 10 from 100",
+          "status": true
+        }
+      ]
+    },
+    {
+      "testDescribe": "Decreasing value",
+      "testCasesArray": [
+        {
+          "name": "decrease 12 to 3",
+          "status": false
+        },
+        {
+          "name": "decrease 55 to 55",
+          "status": false
+        }
+      ]
+    }
+  ],
+  "tests": {
+    "total": 4,
+    "passed": 2,
+    "failed": 2
+  }
+}

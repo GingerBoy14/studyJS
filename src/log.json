@@ -1,0 +1,1 @@
+{"log":[{"testDescribe":"Adding numbers","testCasesArray":[{"name":"should add 10 to 20","status":true},{"name":"should add 100 to 10","status":true}]},{"testDescribe":"Substracting value","testCasesArray":[{"name":"decrease 12 to 3","status":false},{"name":"decrease 55 to 55","status":true}]}],"tests":{"total":4,"passed":3,"failed":1}}

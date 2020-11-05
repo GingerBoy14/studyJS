@@ -1,8 +1,9 @@
 import React from 'react'
-import CONSTANTS from './constants'
+// import CONSTANTS from './constants'
 import { Post, Storage } from './classes'
 import PropTypes from './utils/PropTypes'
 import Validator from './utils/validator'
+import Stocks from './Stock'
 
 const post1 = new Post()
 const post2 = new Post()
@@ -20,6 +21,13 @@ const rules = {
 const args = { name: 'sd6', age: 5 }
 
 Validator.validate({ rules, args })
-const App = () => <h1>asdfasdf</h1>
+
+function App() {
+  return (
+    <div className="App">
+      <Stocks />
+    </div>
+  )
+}
 
 export default App
